@@ -1,9 +1,10 @@
 import re
 
-#read in task files and return a nx4 array.
+#read in task files and return a n*4 array.
 
 # file = input('task_file_path:')
 file = './split_data/task1.txt'
+
 f = open(file,'r')
 lineNumber = 0
 keyword = 'Task'
