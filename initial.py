@@ -16,7 +16,7 @@ for line in f:
 		row = line.split()
 		data.append(row)
 edgeNum = lineNumber-1
-print('number of TV edges:',edgeNum)
+print('number of TV edges:',edgeNum,'\n')
 # print(data)
 f.close()
 
@@ -30,7 +30,7 @@ R_ok = []
 V_ok = []
 S_k = data
 totalCost = 0
-assign = []
+assigned_pairs = []
 for k in range(edgeNum,0,-1):
 	S_k.sort(key=lambda x:x[3],reverse=True) #sort by cost in decreasing order since pop() is from tail(we want to pop the lowest cost first)
 	while len(S_k) > 0:
@@ -39,11 +39,12 @@ for k in range(edgeNum,0,-1):
 			R_ok.extend(e_Tv[1])
 			V_ok.append(e_Tv[2])
 			totalCost += e_Tv[3]
-			assign.append(e_Tv)
+			pair = [e_Tv[1],e_Tv[2]]
+			assigned_pairs.append(tuple(pair))
 
-print('length of R_ok:',len(R_ok))
-print('R_ok:',R_ok)
-print('length of V_ok:',len(V_ok))
-print('V_ok:',V_ok)
-print('totalCost:',totalCost)
-print('assign:',assign)
+print('length of R_ok:',len(R_ok),'\n')
+print('R_ok:',R_ok,'\n')
+print('length of V_ok:',len(V_ok),'\n')
+print('V_ok:',V_ok,'\n')
+print('totalCost:',totalCost,'\n')
+print('assigned_pairs of (T,v):',assigned_pairs)
