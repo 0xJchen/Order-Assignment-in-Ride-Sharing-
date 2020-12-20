@@ -5,8 +5,9 @@ import numpy as np
 #read in task files and return a n*4 array.
 
 # file = input('task_file_path:')
-def greedy_initial(filepath):
-	f = open(filepath,'r')
+def greedy_initial(task_count):
+	filename='./split_data/task'+str(task_count)+'.txt'
+	f = open(filename,'r')
 	info=f.readline()
 	requests = int(info.split('Orders=')[1].split(' ')[0])
 	vehicles = int(info.split('Vehicles=')[1].split(' ')[0])
@@ -84,7 +85,7 @@ def greedy_initial(filepath):
 
 
 if __name__ == '__main__':
-	df_unique_trip,eps_matrix,kai_matrix = greedy_initial('./split_data/task1.txt')
+	df_unique_trip,eps_matrix,kai_matrix = greedy_initial(1)
 	print("number of unique_trips:",len(df_unique_trip),'\n')
 	print("unique_trips:",df_unique_trip,'\n')
 	print("kai_matrix:",kai_matrix,'\n')
