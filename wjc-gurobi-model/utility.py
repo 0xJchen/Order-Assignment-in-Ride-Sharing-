@@ -18,7 +18,7 @@ def p_l(data):
     print("length: ",len(data))
     print(data)
 def get_task(task_count):
-    filename='task'+str(task_count)+'.txt'
+    filename='./split_data/task'+str(task_count)+'.txt'
     with open(filename,'r') as f:
         info=f.readline()
     requests=int(info.split('Orders=')[1].split(' ')[0])
