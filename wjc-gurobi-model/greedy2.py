@@ -20,7 +20,7 @@ def greedy_initial2(task_count):
 			row = line.split()
 			data.append(row)
 	edgeNum = lineNumber
-	print('number of TV edges:',edgeNum,'\n')
+	# print('number of TV edges:',edgeNum,'\n')
 	# print(data)
 	f.close()
 
@@ -96,12 +96,13 @@ def greedy_initial2(task_count):
 
 
 	# return trip_dict,eps_matrix,kai_matrix
-	return np.array(df_unique_trip),np.array(eps_matrix),np.array(kai_matrix)
+	return np.array(df_unique_trip),np.array(eps_matrix),np.array(kai_matrix),totalCost
 
 
 if __name__ == '__main__':
-	df_unique_trip,eps_matrix,kai_matrix = greedy_initial2(1)
+	df_unique_trip,eps_matrix,kai_matrix,totalCost = greedy_initial2(1)
 	print("number of unique_trips:",len(df_unique_trip),'\n')
 	print("unique_trips:",df_unique_trip,'\n')
 	print("kai_matrix:",kai_matrix,'\n')
 	print("eps_matrix_size:",eps_matrix.shape)
+	print(totalCost)
