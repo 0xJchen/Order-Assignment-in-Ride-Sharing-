@@ -2,7 +2,7 @@ import re
 import copy
 import numpy as np
 
-def greedy_initial(task_count):
+def greedy_initial2(task_count):
 	filename='./split_data/task'+str(task_count)+'.txt'
 	f = open(filename,'r')
 	info=f.readline()
@@ -33,18 +33,37 @@ def greedy_initial(task_count):
 	R_ok = []
 	V_ok = []
 	S_k = copy.deepcopy(data)
+	S_k1 = []
+	S_k2 = []
+	for i in S_k:
+		if len(i[1])==1:
+			S_k1.append(i)
+		else:
+			S_k2.append(i)
 	# print(S_k)
 	totalCost = 0
 	assigned_pairs = []
-	S_k.sort(key=lambda x:x[3],reverse=True) #sort by cost in decreasing order since pop() is from tail(we want to pop the lowest cost first)
-	while len(S_k) > 0:
-		e_Tv = S_k.pop()
+	S_k2.sort(key=lambda x:x[3],reverse=True) #sort by cost in decreasing order since pop() is from tail(we want to pop the lowest cost first)
+	while len(S_k2) > 0:
+		e_Tv = S_k2.pop()
 		if set(e_Tv[1]).isdisjoint(set(R_ok)) and e_Tv[2] not in V_ok:
-			R_ok.extend(e_Tv[1])
-			V_ok.append(e_Tv[2])
-			totalCost += e_Tv[3]
-			pair = [e_Tv[1],e_Tv[2]]
-			assigned_pairs.append(tuple(pair))
+				R_ok.extend(e_Tv[1])
+				V_ok.append(e_Tv[2])
+				totalCost += e_Tv[3]
+				pair = [e_Tv[1],e_Tv[2]]
+				assigned_pairs.append(tuple(pair))
+
+	S_k1.sort(key=lambda x:x[3],reverse=True) #sort by cost in decreasing order since pop() is from tail(we want to pop the lowest cost first)
+	while len(S_k1) > 0:
+		e_Tv = S_k1.pop()
+		if set(e_Tv[1]).isdisjoint(set(R_ok)) and e_Tv[2] not in V_ok:
+				R_ok.extend(e_Tv[1])
+				V_ok.append(e_Tv[2])
+				totalCost += e_Tv[3]
+				pair = [e_Tv[1],e_Tv[2]]
+				assigned_pairs.append(tuple(pair))
+
+
 
 	unique_trips = []
 	for i in range(edgeNum):
@@ -81,7 +100,7 @@ def greedy_initial(task_count):
 
 
 if __name__ == '__main__':
-	df_unique_trip,eps_matrix,kai_matrix = greedy_initial(1)
+	df_unique_trip,eps_matrix,kai_matrix = greedy_initial2(1)
 	print("number of unique_trips:",len(df_unique_trip),'\n')
 	print("unique_trips:",df_unique_trip,'\n')
 	print("kai_matrix:",kai_matrix,'\n')
