@@ -58,7 +58,7 @@ def rtv(param, initialization, eps_matrix, kai_matrix):
     #         eps[i,j].start=0
     # eps[2,4].start=1
     model.Params.timeLimit = 60
-    model.Params.method = 5
+    model.Params.method = 4
     model.optimize()
     interval = time.time()-start
     print("finish within: {}".format(interval))

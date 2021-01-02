@@ -5,7 +5,7 @@ import pickle
 
 if __name__ == '__main__':
     total_st = time.time()
-    task_list = [i for i in range(3, 121)]
+    task_list = [i for i in range(4, 121)]
 
     gd1_time = []
     gd1_cost = []
@@ -25,7 +25,7 @@ if __name__ == '__main__':
     for i in task_list:
         task_info(i)
 
-        for j in range(3):
+        for j in range(2,3):
             msg("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
             infor="task num: "+str(i)+ "iter:"+str(j)
             msg(infor)
@@ -54,16 +54,17 @@ if __name__ == '__main__':
     result = {}
     result["gd1_time"] = gd1_time
     result["gd1_cost"] = gd1_cost
-    result["gd2_time"] = gd1_time
-    result["gd2_cost"] = gd1_cost
+    result["gd2_time"] = gd2_time
+    result["gd2_cost"] = gd2_cost
     result["pure_mip_time"] = pure_mip_time
     result["pure_mip_value"] = pure_mip_value
     result["mip_gd1_time"] = mip_gd1_time
     result["mip_gd1_value"] = mip_gd1_value
     result["mip_gd2_time"] = mip_gd2_time
-    result["mip_gd2_time"] = mip_gd2_time
+    result["mip_gd2_time"] = mip_gd2_value
 
     # pickle.dump(result,open("result","wb"))
-    with open("result", "wb") as fp:
+    stamp="result_gd2"+str(len(task_list))
+    with open(stamp, "wb") as fp:
         pickle.dump(result, fp)
     print("finish in {}".format(time.time()-total_st))
