@@ -1,1 +1,0 @@
-# 2020_numerical_optimization_project
